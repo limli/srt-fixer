@@ -30,7 +30,8 @@ def read_srt(text_file):
             else:
                 srt_block['text'] = line
         elif state == "text" and line == "":
-            yield srt_block
+            if 'text' in srt_block:
+                yield srt_block
             srt_block = {}
             state = "start"
         else:
